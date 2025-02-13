@@ -1,4 +1,4 @@
-# Next.js Template
+# Next.js Tutorial DB
 
 - Next.js 15
 - TypeScript
