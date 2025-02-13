@@ -1,6 +1,6 @@
 {
-  "name": "next_template",
-  "version": "0.1.0",
+  "name": "next-tutorial-db",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
   "scripts": {
