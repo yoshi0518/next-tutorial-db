@@ -1,17 +1,11 @@
 import type { FC } from 'react';
 import { env } from '@/env';
-import { db } from '@/server/db';
+import { getUsers } from '@/server/data-access-layer/user';
 
 import { HelloWorldLabel } from './_components/hello-world-label';
 
 const Home: FC = async () => {
-  const users = await db.user.findMany({
-    select: {
-      id: true,
-      email: true,
-      name: true,
-    },
-  });
+  const users = await getUsers();
   console.log({ users });
 
   return (
