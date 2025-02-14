@@ -65,7 +65,7 @@ const eslintConfig = [
     },
   },
   {
-    ignores: ['src/components/ui/*', '*.md'],
+    ignores: ['src/components/ui/*', '*.md', 'prisma/generated/zod/*'],
   },
 ];
 

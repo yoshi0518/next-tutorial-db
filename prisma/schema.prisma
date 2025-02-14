@@ -8,6 +8,13 @@ generator client {
   provider = "prisma-client-js"
 }
 
+generator zod {
+  provider          = "zod-prisma-types"
+  useMultipleFiles  = true
+  writeBarrelFiles  = false
+  useTypeAssertions = true
+}
+
 datasource db {
   provider  = "postgresql"
   url       = env("DATABASE_URL")
@@ -24,6 +31,7 @@ model User {
 
 model Todo {
   id        Int      @id @default(autoincrement())
+  /// @zod.string.max(10, {message: "タイトルは10文字以内で入力してください"})
   title     String
   completed Boolean  @default(false)
   createdAt DateTime @default(now())

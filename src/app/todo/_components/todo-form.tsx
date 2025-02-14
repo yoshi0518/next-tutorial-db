@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { addTodo } from '@/server/action/todo';
+import { TodoCreateInputSchema } from 'prisma/generated/zod/inputTypeSchemas/TodoCreateInputSchema';
 import { z } from 'zod';
 
 export const TodoForm = () => {
@@ -16,6 +17,7 @@ export const TodoForm = () => {
 
     try {
       const input = { title, completed: false };
+      TodoCreateInputSchema.parse(input);
       await addTodo(input);
       setTitle('');
       setError(null);

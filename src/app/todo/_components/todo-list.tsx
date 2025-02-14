@@ -1,9 +1,10 @@
 'use client';
 
-import type { Todo } from '@prisma/client';
+import type { Todo } from 'prisma/generated/zod/modelSchema/TodoSchema';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { removeTodo, toggleTodoCompletion } from '@/server/action/todo';
+import TodoUpdateInputSchema from 'prisma/generated/zod/inputTypeSchemas/TodoUpdateInputSchema';
 
 export const TodoList = ({ initialTodos }: { initialTodos: Todo[] }) => {
   const [todos, setTodos] = useState(initialTodos);
@@ -16,6 +17,7 @@ export const TodoList = ({ initialTodos }: { initialTodos: Todo[] }) => {
   const handleToggle = async (id: number, completed: boolean) => {
     try {
       const data = { completed: !completed };
+      TodoUpdateInputSchema.parse(data);
       await toggleTodoCompletion(id, data);
       router.refresh();
     } catch (error) {

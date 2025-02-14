@@ -1,9 +1,14 @@
 import 'server-only';
 
-import type { Todo } from '@prisma/client';
+import type { Todo } from 'prisma/generated/zod/modelSchema/TodoSchema';
 import { db } from '@/server/db';
 import { Prisma } from '@prisma/client';
+import TodoCreateInputSchema from 'prisma/generated/zod/inputTypeSchemas/TodoCreateInputSchema';
+import TodoUpdateInputSchema from 'prisma/generated/zod/inputTypeSchemas/TodoUpdateInputSchema';
 import { z } from 'zod';
+
+type TodoCreateInput = z.infer<typeof TodoCreateInputSchema>;
+type TodoUpdateInput = z.infer<typeof TodoUpdateInputSchema>;
 
 const createTodoDTO = (input: Todo): Todo => {
   return {
@@ -38,10 +43,11 @@ export const getTodos = async () => {
   }
 };
 
-export const createTodo = async (data: Omit<Todo, 'id' | 'createdAt' | 'updatedAt'>) => {
+export const createTodo = async (data: TodoCreateInput) => {
   try {
+    const validatedData = TodoCreateInputSchema.parse(data);
     const todo = await db.todo.create({
-      data,
+      data: validatedData,
     });
 
     return createTodoDTO(todo);
@@ -50,11 +56,12 @@ export const createTodo = async (data: Omit<Todo, 'id' | 'createdAt' | 'updatedA
   }
 };
 
-export const updateTodo = async (id: number, data: Partial<Omit<Todo, 'createdAt' | 'updatedAt'>>) => {
+export const updateTodo = async (id: number, data: TodoUpdateInput) => {
   try {
+    const validatedData = TodoUpdateInputSchema.parse(data);
     const todo = await db.todo.update({
       where: { id },
-      data,
+      data: validatedData,
     });
 
     return createTodoDTO(todo);
