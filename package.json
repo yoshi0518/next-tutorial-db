@@ -15,10 +15,12 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@prisma/client": "^6.3.1",
     "@t3-oss/env-nextjs": "^0.12.0",
     "@tailwindcss/postcss": "^4.0.6",
     "next": "15.1.7",
     "postcss": "^8.5.2",
+    "prisma": "^6.3.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "tailwindcss": "^4.0.6",
