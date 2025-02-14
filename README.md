@@ -96,6 +96,12 @@ $ pnpm db:migrate
 
 # マイグレーション(名称指定)
 $ pnpm db:migrate --name xxxxxxxxxx
+
+# シードデータを投入
+$ pnpm db:seed
+
+# PrismaStudio起動
+$ pnpm db:studio
 ```
 
 ## 参考
