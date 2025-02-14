@@ -85,6 +85,19 @@ $ pnpm dlx supabase@latest db reset
 
 ※SupabaseローカルDB起動時のエラー対応<br> `supabase/config.toml`に `enabled = false` を追加して起動
 
+### Prisma
+
+```bash
+# 初期化
+$ pnpm dlx prisma init
+
+# マイグレーション
+$ pnpm db:migrate
+
+# マイグレーション(名称指定)
+$ pnpm db:migrate --name xxxxxxxxxx
+```
+
 ## 参考
 
 - GitHub Actions で継続的デリバリー<br> https://zenn.dev/hayato94087/books/6a55108faa37ba/viewer/h030ni8p32akv6p4
