@@ -46,15 +46,23 @@ $ pnpm typecheck
 
 Settings => Secrets and variables => Actions => New repository secret
 
-| Name              | Secret               |
-| ----------------- | -------------------- |
-| VERCEL_ORG_ID     | Vercelから取得した値 |
-| VERCEL_PROJECT_ID | Vercelから取得した値 |
-| VERCEL_TOKEN      | Vercelから取得した値 |
-| ENV_PROD          | prod                 |
-| ENV_DEV           | dev                  |
-| DEBUG_PROD        | false                |
-| DEBUG_DEV         | true                 |
+| Name                               | Secret                 |
+| ---------------------------------- | ---------------------- |
+| VERCEL_ORG_ID                      | Vercelから取得した値   |
+| VERCEL_PROJECT_ID                  | Vercelから取得した値   |
+| VERCEL_TOKEN                       | Vercelから取得した値   |
+| ENV_PROD                           | prod                   |
+| ENV_DEV                            | dev                    |
+| DEBUG_PROD                         | false                  |
+| DEBUG_DEV                          | true                   |
+| TEST_DATABASE_URL                  | Supabaseから取得した値 |
+| TEST_DIRECT_URL                    | Supabaseから取得した値 |
+| TEST_NEXT_PUBLIC_SUPABASE_URL      | Supabaseから取得した値 |
+| TEST_NEXT_PUBLIC_SUPABASE_ANON_KEY | Supabaseから取得した値 |
+| PROD_DATABASE_URL                  | Supabaseから取得した値 |
+| PROD_DIRECT_URL                    | Supabaseから取得した値 |
+| PROD_NEXT_PUBLIC_SUPABASE_URL      | Supabaseから取得した値 |
+| PROD_NEXT_PUBLIC_SUPABASE_ANON_KEY | Supabaseから取得した値 |
 
 3. VercelのGithubリポジトリ連携を解除
 
@@ -76,6 +84,25 @@ $ pnpm dlx supabase@latest db reset
 [http://localhost:54323](http://localhost:54323)
 
 ※SupabaseローカルDB起動時のエラー対応<br> `supabase/config.toml`に `enabled = false` を追加して起動
+
+### Prisma
+
+```bash
+# 初期化
+$ pnpm dlx prisma init
+
+# マイグレーション
+$ pnpm db:migrate
+
+# マイグレーション(名称指定)
+$ pnpm db:migrate --name xxxxxxxxxx
+
+# シードデータを投入
+$ pnpm db:seed
+
+# PrismaStudio起動
+$ pnpm db:studio
+```
 
 ## 参考
 

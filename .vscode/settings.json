@@ -51,7 +51,7 @@
   },
 
   "[prisma]": {
-    "editor.defaultFormatter": "ajmnz.prisma-import",
+    "editor.defaultFormatter": "Prisma.prisma",
     "editor.insertSpaces": true,
     "editor.formatOnSave": true
   }

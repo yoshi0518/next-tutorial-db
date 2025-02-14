@@ -4,21 +4,28 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "postinstall": "prisma generate",
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "next lint && prisma validate",
     "lint:fix": "next lint --fix",
     "fmt": "prettier --check \"**/*.{ts,tsx,js,jsx,cjs,mjs,md,json,lintstagedrc,yml,yaml}\"",
-    "fmt:fix": "prettier --write \"**/*.{ts,tsx,js,jsx,cjs,mjs,md,json,lintstagedrc,yml,yaml}\"",
+    "fmt:fix": "prettier --write \"**/*.{ts,tsx,js,jsx,cjs,mjs,md,json,lintstagedrc,yml,yaml}\" && prisma format",
     "typecheck": "tsc --noEmit",
-    "prepare": "husky"
+    "prepare": "husky",
+    "db:migrate": "prisma migrate dev",
+    "db:seed": "prisma db seed",
+    "db:studio": "prisma studio"
   },
   "dependencies": {
+    "@prisma/client": "^6.3.1",
     "@t3-oss/env-nextjs": "^0.12.0",
     "@tailwindcss/postcss": "^4.0.6",
+    "argon2": "^0.41.1",
     "next": "15.1.7",
     "postcss": "^8.5.2",
+    "prisma": "^6.3.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "tailwindcss": "^4.0.6",
@@ -40,9 +47,13 @@
     "lint-staged": "^15.4.3",
     "prettier": "^3.5.0",
     "prettier-plugin-tailwindcss": "^0.6.11",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vite-node": "^3.0.5"
   },
   "engines": {
     "node": "22.x"
+  },
+  "prisma": {
+    "seed": "pnpm vite-node prisma/seed.ts"
   }
 }
